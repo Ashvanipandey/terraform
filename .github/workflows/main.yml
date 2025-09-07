@@ -19,3 +19,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5.0.0
+        
+      - name: Azure Login
+        uses: terraform1110/login@main
+        with:
+          client-id: c18fa057-ce2e-4d54-9ee4-1f76213c876a
+          tenant-id: a6395b74-f5d3-427b-b4c0-5a918ab2e374
+          subscription-id: 388a2121-d962-4059-8c36-c24d806cad40
