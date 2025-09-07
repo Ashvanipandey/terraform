@@ -1,0 +1,12 @@
+name: demoflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hello-job:
+    name: Hello Job
+    runs-on: [self-hosted, macOS, X64]
+    steps:
+      - name: Say Hello
+        run: echo "Hello from runner"
