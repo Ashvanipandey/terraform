@@ -2,7 +2,11 @@ name: demoflow
 
 on:
   workflow_dispatch:
-
+  
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   hello-job:
     name: Hello Job
@@ -10,3 +14,8 @@ jobs:
     steps:
       - name: Say Hello
         run: echo "Hello from runner"
+  terraforminit-job:
+    runs-on: [self-hosted]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
