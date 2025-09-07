@@ -8,6 +8,7 @@ module "vnet" {
   source = "../../Virtual_Network"
   name = "vnet001"
   location = "westus2"
+  rg="rg123"
 }
 
 module "subnet" {
@@ -21,4 +22,8 @@ module "subnet" {
 module "vm" {
     depends_on = [ module.subnet ]
   source = "../../virtual_machine"
+}
+module "lb" {
+    depends_on = [ module.vm ]
+  source = "../../loadbalancer"
 }
