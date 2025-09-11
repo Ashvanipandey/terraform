@@ -21,8 +21,13 @@ module "subnet" {
 }
 module "vm" {
     depends_on = [ module.subnet,module.nic ]
+    count = 2
   source = "../../virtual_machine"
-  nicname = "my-nic"
+  nicname = "my-nic${count.index}"
+  virtual_machine_name="my-vm${count.index}"
+  location = "westus2"
+  rg = "rg121"
+  osdiscname = "my0os-disc-name-${count.index}"
 }
 module "lb" {
     depends_on = [ module.vm ]
@@ -32,7 +37,12 @@ module "lb" {
 }
 module "nic" {
     depends_on = [ module.subnet ]
+    count = 2
   source = "../../nic"
+  location ="westus2"
+  resource_group_name = "rg121"
+  nicname = "my-nic${count.index}"
+
 }
 module "nsg" {
     depends_on = [ module.rg ]
@@ -41,3 +51,4 @@ module "nsg" {
   rg="rg121"
   location = "westus2"
 }
+//k
