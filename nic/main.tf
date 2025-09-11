@@ -3,7 +3,15 @@ data "azurerm_subnet" "example" {
   virtual_network_name = "vnet001"
   resource_group_name  = "rg121"
 }
-
+variable "nicname" {
+  
+}
+variable "location" {
+  
+}
+variable "resource_group_name" {
+  
+}
 # Network Interface
 resource "azurerm_network_interface" "nic" {
   name                = "my-nic"
