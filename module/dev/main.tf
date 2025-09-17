@@ -1,6 +1,7 @@
 module "rg" {
   source = "../../Resource_Group"
   name = "rg121"
+  location = "westus2"
 }
 
 module "vnet" {
@@ -29,19 +30,20 @@ module "vm" {
   rg = "rg121"
   osdiscname = "my0os-disc-name-${count.index}"
 }
-module "lb" {
-    depends_on = [ module.vm ]
-  source = "../../loadbalancer"
-  rg="rg121"
-  nsgname = "nsg001"
-}
+# module "lb" {
+#     depends_on = [ module.vm ]
+#   source = "../../loadbalancer"
+#   rg="rg121"
+#   nsgname = "nsg001"
+# }
 module "nic" {
-    depends_on = [ module.subnet ]
+    depends_on = [ module.subnet ,module.nsg]
     count = 2
   source = "../../nic"
   location ="westus2"
   resource_group_name = "rg121"
   nicname = "my-nic${count.index}"
+  nsgname = "nsg001"
 
 }
 module "nsg" {

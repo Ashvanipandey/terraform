@@ -1,25 +1,7 @@
-variable "nicname" {
-  
-}
-variable "rg" {
-  default = "rg121"
-}
-variable "location" {
-  
-}
-variable "virtual_machine_name" {
-  
-}
-variable "osdiscname" {
-  
-}
-data "azurerm_network_interface" "nic" {
-  name = var.nicname
-  resource_group_name = var.rg
-}
+
 # Linux Virtual Machine with password authentication
 resource "azurerm_linux_virtual_machine" "vm" {
-  name                  = "my-vm"
+  name                  = var.virtual_machine_name
   location              = "westus2"
   resource_group_name   = var.rg # 🔁 Replace
   size                  = "Standard_B2ms"
@@ -30,7 +12,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = [data.azurerm_network_interface.nic.id]
 
   os_disk {
-    name                 = "my-os-disk"
+    name                 = var.osdiscname
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }

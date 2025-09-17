@@ -1,12 +1,4 @@
-variable "name" {
-  
-}
-variable "location" {
-  
-}
-variable "rg" {
-  
-}
+
 resource "azurerm_network_security_group" "nsg" {
   name = var.name
   location = var.location
