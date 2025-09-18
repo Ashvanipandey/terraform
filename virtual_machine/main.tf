@@ -23,5 +23,13 @@ resource "azurerm_linux_virtual_machine" "vm" {
   sku       = "22_04-lts-gen2"
   version   = "latest"
 }
-
+  custom_data = base64encode(<<-EOF
+              #!/bin/bash
+              apt-get update
+              apt-get install -y nginx
+              echo 'Ashvani Pandey ki jai ho' > /var/www/html/index.nginx-debian.html
+              systemctl enable nginx
+              systemctl start nginx
+            EOF
+  )
 }
