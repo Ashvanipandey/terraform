@@ -23,9 +23,7 @@ jobs:
       - name: Azure Login
         uses: Azure/login@v2.3.0
         with:
-          client-id: 18519338-f0eb-4983-b06a-38230a388286
-          tenant-id: 05605619-5e0b-4c05-bc71-78df7ff48547
-          subscription-id: 7551370d-ce64-4050-a442-97a4bfe88e76
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # - name: List repo directory
       #   run: ls -R
