@@ -36,4 +36,8 @@ jobs:
       - name: terraform-Plan
         run: terraform plan
         working-directory: module/dev
+
+      - name: Terraform apply
+        run:  terraform apply --auto-approve
+        working-directory: module/dev
     
