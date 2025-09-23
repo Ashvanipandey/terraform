@@ -7,7 +7,7 @@ module "rg" {
 module "vnet" {
   depends_on = [ module.rg ]
   source = "../../Virtual_Network"
-  name = "vnet001"
+  name = "vnet011"
   location = "westus2"
   rg="rg127"
 }

@@ -1,8 +1,8 @@
 variable "rg" {
-  default = "asd"
+  
 }
 variable "name" {
-  default = "vnet101"
+  
 }
 variable "location" {
   default = "sss"

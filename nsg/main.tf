@@ -5,7 +5,7 @@ resource "azurerm_network_security_group" "nsg" {
   resource_group_name = var.rg
   
     security_rule {
-    name                       = "test123"
+    name                       = "Allow-SSH"
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
@@ -16,7 +16,7 @@ resource "azurerm_network_security_group" "nsg" {
     destination_address_prefix = "*"
   }
     security_rule {
-    name                       = "test124"
+    name                       = "Allow-HTTP"
     priority                   = 110
     direction                  = "Inbound"
     access                     = "Allow"
