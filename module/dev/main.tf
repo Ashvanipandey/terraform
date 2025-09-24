@@ -44,6 +44,7 @@ module "nic" {
   resource_group_name = "rg127"
   nicname = "my-nic${count.index}"
   nsgname = "nsg001"
+  Virtual_Network="vnet011"
 
 }
 module "nsg" {

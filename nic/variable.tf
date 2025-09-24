@@ -11,3 +11,6 @@ variable "location" {
 variable "resource_group_name" {
   
 }
+variable "Virtual_Network" {
+  
+}
