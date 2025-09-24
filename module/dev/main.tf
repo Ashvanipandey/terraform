@@ -17,7 +17,7 @@ module "subnet" {
   source = "../../subnet"
   name = "subnet001"
   address_prefixes = [ "10.0.0.0/24" ]
-  vnet = "vnet001"
+  vnet = "vnet011"
   rg="rg127"
 }
 module "vm" {
