@@ -1,6 +1,6 @@
 module "rg" {
   source = "../../Resource_Group"
-  name = "rg127"
+  name = "rg1"
   location = "westus2"
 }
 
