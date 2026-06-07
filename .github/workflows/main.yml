@@ -38,7 +38,12 @@ jobs:
 
       - name: List repo directory
         run: ls -R
-
+      
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+         working_directory: module/dev
+         additional_args: --minimum-severity HIGH
           
       - name: Terraform Init
         run: terraform init
