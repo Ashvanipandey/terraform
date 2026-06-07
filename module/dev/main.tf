@@ -1,8 +1,8 @@
-# module "rg" {
-#   source = "../../Resource_Group"
-#   name = "rg127"
-#   location = "westus2"
-# }
+module "rg" {
+  source = "../../Resource_Group"
+  name = "rg127"
+  location = "westus2"
+}
 
 # module "vnet" {
 #   depends_on = [ module.rg ]
