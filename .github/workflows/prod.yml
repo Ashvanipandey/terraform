@@ -23,5 +23,5 @@ jobs:
   terraform-job:
     uses: ./.github/workflows/terraform-plan-apply.yml
     with:
-      working-directory: module/dev
+      working-directory: module/prod
     secrets: inherit
