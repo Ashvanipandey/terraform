@@ -1,0 +1,27 @@
+name: Dev Terraform Pipeline
+
+on:
+  workflow_dispatch: {}
+
+  push:
+    branches:
+      - main
+    paths:
+      - module/prod/**
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  hello-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "Hello from Dev Pipeline"
+
+  terraform-job:
+    uses: ./.github/workflows/terraform-plan-apply.yml
+    with:
+      working-directory: module/dev
+    secrets: inherit
