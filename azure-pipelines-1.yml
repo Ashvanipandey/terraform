@@ -1,19 +1,50 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+  - main
 
 pool:
- name: agent
+  name: agent
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+  - stage: TerraformInstall
+    displayName: "Install Terraform"
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    jobs:
+      - job: InstallTerraform
+        displayName: "Terraform Install Job"
+
+        steps:
+          - script: |
+              set -e
+
+              echo "Installing Terraform..."
+
+              TF_VERSION="1.8.5"
+
+              sudo apt-get update -y
+              sudo apt-get install -y wget unzip
+
+              wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+
+              unzip terraform_${TF_VERSION}_linux_amd64.zip
+
+              sudo mv terraform /usr/local/bin/
+
+              terraform version
+            displayName: "Install Terraform"
+
+  - stage: TerraformInit
+    displayName: "Terraform Init"
+    dependsOn: TerraformInstall
+
+    jobs:
+      - job: InitTerraform
+        displayName: "Terraform Init Job"
+
+        steps:
+          - checkout: self
+
+          - script: |
+              terraform version
+              terraform init
+            workingDirectory: module/dev
+            displayName: "Terraform Init"
