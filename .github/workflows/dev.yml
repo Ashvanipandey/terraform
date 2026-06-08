@@ -21,7 +21,7 @@ jobs:
         run: echo "Hello from Dev Pipeline"
 
   terraform-job:
-    uses: ./.github/workflows/terraform-reusable.yml
+    uses: ./.github/workflows/terraform-plan-apply.yml
     with:
       working-directory: module/dev
     secrets: inherit
