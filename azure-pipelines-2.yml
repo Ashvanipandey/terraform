@@ -32,6 +32,6 @@ stages:
         inputs:
           targetType: 'inline'
           script: 'terraform init'
-          workingDirectory: '$(System.DefaultWorkingirectory)/dev'
+          workingDirectory: '$(System.DefaultWorkingDirectory)/dev'
 
 
