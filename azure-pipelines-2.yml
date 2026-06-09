@@ -35,6 +35,16 @@ stages:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
+          script: 'pwd'
+
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: 'ls'
+
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
           script: 'terraform plan'
           workingDirectory: '''$(System.DefaultWorkingDirectory)/module/dev'''
 
