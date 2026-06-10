@@ -15,5 +15,5 @@ stages:
   jobs: 
   - job: terraforminstall
     steps:
-    - template: templates/template.yml
+    - template: template.yml
     
