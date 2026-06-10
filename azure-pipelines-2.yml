@@ -15,34 +15,5 @@ stages:
   jobs: 
   - job: terraforminstall
     steps:
-      - task: TerraformInstaller@1
-        inputs:
-          terraformVersion: 'latest'
-  
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: 'terraform init --upgrade'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev/'
-
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: 'pwd'
-
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: 'ls'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev/'
-
-      - task: TerraformTask@5
-        inputs:
-          provider: 'azurerm'
-          command: 'plan'
-          workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev'
-          environmentServiceNameAzureRM: 'ser1'
-          
-      
-
-
+    - template: templates/template.yml
+    
