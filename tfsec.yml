@@ -1,4 +1,23 @@
 steps:
+- task: PowerShell@2
+  displayName: 'Install tfsec'
+  inputs:
+    targetType: 'inline'
+    pwsh: true
+    script: |
+      Invoke-WebRequest `
+        -Uri "https://github.com/aquasecurity/tfsec/releases/latest/download/tfsec-windows-amd64.exe" `
+        -OutFile "$(Agent.TempDirectory)\tfsec.exe"
+
+      & "$(Agent.TempDirectory)\tfsec.exe" --version
+
+- task: PowerShell@2
+  displayName: 'Run tfsec'
+  inputs:
+    targetType: 'inline'
+    pwsh: true
+    script: |
+      & "$(Agent.TempDirectory)\tfsec.exe" .
 
 
     
