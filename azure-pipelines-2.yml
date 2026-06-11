@@ -9,11 +9,16 @@ trigger:
        
 pool:
   vmImage: ubuntu-latest
-
+variables:
+- group: "New variable group 11-Jun"
 stages:
 - stage: terraforminstall
   jobs: 
   - job: terraforminstall
     steps:
     - template: template.yml
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: 'echo "$name"'
     
