@@ -12,7 +12,6 @@ stages:
     jobs:
       - job: plan
         steps:
-          
           - template: installinit.yml
           - task: TerraformTask@5
             inputs:
