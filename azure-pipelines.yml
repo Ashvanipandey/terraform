@@ -7,5 +7,19 @@ trigger:
 pool:
  vmImage: ubantu-latest
 
+stages:
+  - stage: plan
+    jobs:
+      - job: plan
+        steps:
+          
+          - template: installinit.yml
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'plan'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev'
+              environmentServiceNameAzureRM: 'ser1'
+
 
 
