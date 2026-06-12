@@ -20,5 +20,19 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev'
               environmentServiceNameAzureRM: 'ser1'
 
+  - stage: apply
+    dependsOn: plan
+    condition: succeeded()
+    jobs:
+      - job: terraformapply
+        steps:
+          - template: installinit.yml
+          - task: TerraformTask@5
+            inputs:
+              provider: 'azurerm'
+              command: 'apply'
+              workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev'
+              environmentServiceNameAzureRM: 'ser1'
+
 
 
