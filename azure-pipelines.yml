@@ -20,8 +20,22 @@ stages:
               workingDirectory: '$(System.DefaultWorkingDirectory)/module/dev'
               environmentServiceNameAzureRM: 'ser1'
 
+  - stage: Approval
+    dependsOn: Plan
+    condition: succeeded()
+    jobs:
+    - job: WaitForApproval
+      pool: server
+      steps:
+      - task: ManualValidation@0
+        timeoutInMinutes: 1440
+        inputs:
+         notifyUsers: 'sidharthchaurasia064@gmail.com'
+         instructions: 'Review Terraform Plan and approve to continue.'
+         onTimeout: 'reject'
+
   - stage: apply
-    dependsOn: plan
+    dependsOn: Approval
     condition: succeeded()
     jobs:
       - job: terraformapply
